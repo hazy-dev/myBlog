@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.blog.mapper.MainMapper">
+	
+	<select id="selectAdminLogin" parameterType="hashmap" resultType="Main">
+		SELECT * FROM ADMIN WHERE ID = #{ID} AND PWD = #{PWD}
+	</select>
+	
+	<select id="create_menu" parameterType="hashmap" resultType="Menu" >
+    	
+    	<if test="guest == 'guest'" >
+    		SELECT MENU, MOVE, SEQ FROM MENU_TABLE WHERE MENU_AUTH = 2 AND HIDE = 'N' ORDER BY SEQ ASC
+    	</if>
+    	<if test="guest == 'admin'" >
+    		SELECT MENU, MOVE, SEQ FROM MENU_TABLE WHERE HIDE = 'N' AND MENU_AUTH >= #{auth} ORDER BY SEQ ASC
+    	</if>
+    
+    </select>
+    
+    <select id="calendar_date" parameterType="hashmap" resultType="Main">
+	
+		SELECT substring(UPLOAD_DATE,1,10) AS INS_DATE FROM REFERENCE_BOARD
+		<if test="name == 'guest'">
+			WHERE TABLE_AUTH = 2		
+		</if>
+		GROUP BY INS_DATE
+	
+	</select>
+	
+	<select id="board_list" parameterType="hashmap" resultType="Post">
+	
+		SELECT IDX, CATEGORY, SUBJECT, FILENAME, MEMO, UPLOAD_DATE FROM REFERENCE_BOARD 
+		WHERE DEL_YN = 'N'
+		<if test="Cdate != ''" >
+			AND substring(UPLOAD_DATE,1,10) = #{Cdate}
+		</if>
+		<if test="name == 'guest'" >
+			AND TABLE_AUTH = 2
+		</if>
+		<if test="name != 'guest'" >
+			AND ( TABLE_AUTH = 2 OR ADMIN_AUTH = #{auth} )
+		</if>
+		ORDER BY UPLOAD_DATE DESC 
+		LIMIT 0 , 3
+		
+	</select>
+	
+	<select id="into_blog" parameterType="hashmap" resultType="int" >
+	
+		call pro_counter( #{getip} );
+	
+	</select>
+	
+	<select id="getCounter" resultType="Main">
+	
+		SELECT 'TOTAL' AS COUNTER_DATE, SUM(COUNTER) AS COUNTER FROM COUNTER 
+		
+		UNION
+						
+		SELECT 'YESTERDAY' AS COUNTER_DAY, IF(COUNT(COUNTER) = 0 , 0 , COUNTER )  FROM COUNTER WHERE substring(COUNTER_DATE,1,10) = substring( ( CURDATE() - INTERVAL 1 day ) , 1, 10 )
+				
+		UNION	
+					
+		SELECT 'TODAY' AS COUNTER_DAY, IF(COUNT(COUNTER) = 0 , 0 , COUNTER ) FROM COUNTER WHERE substring(COUNTER_DATE,1,10) = substring( sysdate() , 1, 10 )
+	 	
+	</select>
+	
+	<select id="user_list" parameterType="hashmap" resultType="Main">
+	
+		SELECT NAME, AUTH FROM ADMIN
+	
+	</select>
+	
+</mapper>

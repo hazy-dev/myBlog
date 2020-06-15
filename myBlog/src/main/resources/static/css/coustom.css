@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.admin_loginform{
+	min-width: 400px;
+    margin: auto;
+}
+
+.admin_h3div{
+	padding-bottom: 15px;
+    text-align: center;
+}
+
+.admin_div{
+	padding-bottom: 15px;
+}
+
+.admin_inputid .admin_iputpassword{
+	min-width: 100%;
+}
+
+.admin_btn{
+	text-align: center;
+	padding-bottom: 15px;
+}
+
+.admin_btn button{
+	width : 100%;
+	background-color: #F6F6F6;
+}
+
+.admin_list{
+	min-width: 1000px;
+    margin: auto;
+}
+
+.admin_paging{
+	padding-top: 20px;
+}
+
+.detail_img{
+	padding : 20px 0 20px 0;
+	width: 100%;
+}
+
+.detail_div{
+	font-size: 14px;
+    font-family: sans-serif;
+    padding: 10px 0 20px 45px;
+    line-height : 200%;
+}
+
+.detail_subject, .detail_sub_subject {
+	width : 100%;
+}
+
+.detail_subject span , .detail_sub_subject span {
+	float : left;
+}
+
+.detail_subject span{
+	margin-top: 12px;
+	padding-right: 30px;
+}
+
+.detail_sub_subject span{
+	padding-right: 30px;
+}
+
+#auth_list_table thead tr th,
+#auth_list_table thead tr td,
+#auth_list_table tbody tr th,
+#auth_list_table tbody tr td{
+	text-align: center;
+}
+
+.main_height{ width : 100%; height : 400px; }
+.main_side_width{ height : 100%; width : 25%; float: left;}
+.main_center_width{	width : 50%; height : 100%; float: left; }
+.main_center_width_inner{ height : 50%; width : 100%; float: left; }
+
+#calendar {width: 250px; border: 1px solid black; line-height: 30px; margin: auto;}
+
+#calendar #header {height: 50px; line-height: 50px; text-align: center; font-size: 18px; font-weight: bold}
+#calendar .button {color: #000; text-decoration: none;}
+
+#calendar table {width: 100%; height: 100%;}
+#calendar caption {display: none;}
+
+#calendar .sun {text-align: center; color: deeppink;}
+#calendar .mon {text-align: center;}
+#calendar .tue {text-align: center;}
+#calendar .wed {text-align: center;}
+#calendar .thu {text-align: center;}
+#calendar .fri {text-align: center;}
+#calendar .sat {text-align: center; color: deepskyblue;}
+#calendar .item { text-align: center; color : #FFBB00; cursor:pointer;}
+
+.main_list_title{  font-weight: bold; }
+.main_list_memo{ font-size: 12px; }
+.main_list_date{ font-size: 7px; }
+.main_list_div { margin-left: 70px; }
+
+.main_text_timer{ text-align: center; font-size: 27px; margin-top: 28px;}
+/* .main_text_into{ text-align: left; margin-top: 20px; margin-left: 20px; font-size: 21px; line-height: 37px;} */
+#counter{ font: 0.85em Verdana, Helvetica, Arial, Gulim, sans-serif; padding: 10px 15px; margin: auto; border: 1px solid #dedede;
+    color: #999; line-height: 1.5; width: 250px;  }
+#counter dt { float:left; width : 190px; }
+#counter .total { font-weight: bold; color : #333; }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
