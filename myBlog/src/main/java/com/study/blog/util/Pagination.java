@@ -1,7 +1,10 @@
 package com.study.blog.util;
 
-public class Pagination {
+import lombok.Data;
 
+@Data
+public class Pagination {
+	
 	/** 한 페이지당 게시글 수 **/
     private int pageSize = 5;
     
@@ -41,8 +44,39 @@ public class Pagination {
     /** 다음 페이지 **/
     private int nextPage;
     
+    // 총 게시글 수 , 페이지 넘버
     public Pagination(int listCnt, int curPage){
     	this.curPage = curPage;
+        /**
+         * 페이징 처리 순서
+         * 1. 총 페이지수
+         * 2. 총 블럭(range)수
+         * 3. range setting
+         */
+        
+        // 총 게시물 수와 현재 페이지를 Controller로 부터 받아온다.
+        /** 현재페이지 **/
+        setCurRange(curPage);
+        /** 총 게시물 수 **/
+        //setListCnt(listCnt);
+        
+        /** 1. 총 페이지 수 **/
+        setPageCnt(listCnt);
+        /** 2. 총 블럭(range)수 **/
+        setRangeCnt(pageCnt);
+        /** 3. 블럭(range) setting **/
+        rangeSetting(curPage);
+        
+        /** DB 질의를 위한 startIndex 설정 **/
+        setStartIndex(curPage);
+    }
+    
+    // 한 페이지당 보여지는 게시글 갯수 ,  총 게시글 수 , 페이지 넘버
+    public Pagination(int pageSize, int listCnt, int curPage){
+    	
+    	this.curPage = curPage;
+    	this.pageSize = pageSize;
+    	
         /**
          * 페이징 처리 순서
          * 1. 총 페이지수
@@ -66,12 +100,12 @@ public class Pagination {
         /** DB 질의를 위한 startIndex 설정 **/
         setStartIndex(curPage);
     }
- 
-    private void setListCnt(int listCnt2) {
-		this.listCnt = listCnt2;
+	
+	public void setCurPage(int curPage) {
+		this.curPage = curPage;
 	}
-
-	public void setPageCnt(int listCnt) {
+ 
+    public void setPageCnt(int listCnt) {
         this.pageCnt = (int) Math.ceil(listCnt*1.0/pageSize);
     }
     public void setRangeCnt(int pageCnt) {
@@ -89,65 +123,55 @@ public class Pagination {
         
         this.prevPage = curPage - 1;
         this.nextPage = curPage + 1;
+        
+        if(nextPage > pageCnt){
+            this.nextPage = pageCnt;
+        }
     }
     public void setCurRange(int curPage) {
         this.curRange = (int)((curPage-1)/rangeSize) + 1;
     }
     public void setStartIndex(int curPage) {
-        this.startIndex = (curPage-1) * pageSize;
-        this.endIndex = curPage * pageSize;
+        this.startIndex = (curPage-1) * pageSize+1;
+        this.endIndex = (curPage) * pageSize;
+        if(endIndex>listCnt) {
+        	endIndex = listCnt;
+        }
     }
+    
+    public String getPagination() {
+    	
+    	String pageHtml = "";
+    	
+    	if( curRange != 1 ){
+			pageHtml += "<a href='#' class='page_box' onClick='fn_paging(1)'><i class='fas fa-angle-double-left'></i></a>";
+		}
+		
+		if( curPage != 1 ){
+			pageHtml += "<a href='#' class='page_box' onClick='fn_paging(" + prevPage + ")'><i class='fas fa-angle-left'></i></a>";
+		}
 
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public int getRangeSize() {
-		return rangeSize;
-	}
-
-	public int getCurPage() {
-		return curPage;
-	}
-
-	public int getCurRange() {
-		return curRange;
-	}
-
-	public int getListCnt() {
-		return listCnt;
-	}
-
-	public int getPageCnt() {
-		return pageCnt;
-	}
-
-	public int getRangeCnt() {
-		return rangeCnt;
-	}
-
-	public int getStartPage() {
-		return startPage;
-	}
-
-	public int getEndPage() {
-		return endPage;
-	}
-
-	public int getStartIndex() {
-		return startIndex;
-	}
-
-	public int getPrevPage() {
-		return prevPage;
-	}
-
-	public int getNextPage() {
-		return nextPage;
-	}
-
-	public int getEndIndex() {
-		return endIndex;
-	}
-	
+		pageHtml += "<span class='number'>";
+		
+		for( int i = startPage; endPage >= i ; i++ ){
+			if( i ==  curPage ){
+				pageHtml +=  "<a href='#self' class='on' onClick='fn_paging(" + i + ")' >" +  i + "</a>";
+			}else{
+				pageHtml +=  "<a href='#self' onClick='fn_paging(" + i + ")' >" +  i + "</a>";
+			}
+		}
+		
+		pageHtml += "</span>";
+		
+		if( curPage != pageCnt && pageCnt > 0 ){
+			pageHtml += "<a href='#' class='page_box' onClick='fn_paging(" + nextPage  + ")' ><i class='fas fa-angle-right'></i></a>";
+		}
+		
+		if( curRange != rangeCnt && rangeCnt > 1 ){
+			pageHtml += "<a href='#' class='page_box' onClick='fn_paging(" + pageCnt  + ")' ><i class='fas fa-angle-double-right'></i></a>";
+		}
+    	
+    	return pageHtml;
+    }
 }
+

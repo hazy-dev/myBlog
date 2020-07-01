@@ -6,7 +6,7 @@
 		SELECT * FROM ADMIN WHERE ID = #{ID} AND PWD = #{PWD}
 	</select>
 	
-	<select id="create_menu" parameterType="hashmap" resultType="Menu" >
+	<!-- <select id="create_menu" parameterType="hashmap" resultType="Menu" >
     	
     	<if test="guest == 'guest'" >
     		SELECT MENU, MOVE, SEQ FROM MENU_TABLE WHERE MENU_AUTH = 2 AND HIDE = 'N' ORDER BY SEQ ASC
@@ -15,33 +15,47 @@
     		SELECT MENU, MOVE, SEQ FROM MENU_TABLE WHERE HIDE = 'N' AND MENU_AUTH >= #{auth} ORDER BY SEQ ASC
     	</if>
     
-    </select>
+    </select> -->
     
     <select id="calendar_date" parameterType="hashmap" resultType="Main">
 	
 		SELECT substring(UPLOAD_DATE,1,10) AS INS_DATE FROM REFERENCE_BOARD
-		<if test="name == 'guest'">
-			WHERE TABLE_AUTH = 2		
-		</if>
 		GROUP BY INS_DATE
 	
 	</select>
+	
+	<select id="board_cnt" parameterType="hashmap" resultType="int">
+	
+		SELECT count(*) FROM REFERENCE_BOARD 
+		WHERE DEL_YN = 'N'
+		<if test="searchDate != ''" >
+			AND substring(UPLOAD_DATE,1,10) = #{searchDate}
+		</if>
+		<if test="searchType != ''" >
+			AND CATEGORY = #{searchType}
+		</if>
+		<if test="searchText != ''" >
+			AND SUBJECT REGEXP #{searchText}
+		</if>
+		
+	</select>
+	
 	
 	<select id="board_list" parameterType="hashmap" resultType="Post">
 	
 		SELECT IDX, CATEGORY, SUBJECT, FILENAME, MEMO, UPLOAD_DATE FROM REFERENCE_BOARD 
 		WHERE DEL_YN = 'N'
-		<if test="Cdate != ''" >
-			AND substring(UPLOAD_DATE,1,10) = #{Cdate}
+		<if test="searchDate != ''" >
+			AND substring(UPLOAD_DATE,1,10) = #{searchDate}
 		</if>
-		<if test="name == 'guest'" >
-			AND TABLE_AUTH = 2
+		<if test="searchType != ''" >
+			AND CATEGORY = #{searchType}
 		</if>
-		<if test="name != 'guest'" >
-			AND ( TABLE_AUTH = 2 OR ADMIN_AUTH = #{auth} )
+		<if test="searchText != ''" >
+			AND SUBJECT REGEXP #{searchText}
 		</if>
 		ORDER BY UPLOAD_DATE DESC 
-		LIMIT 0 , 3
+		LIMIT  #{startNum}  , #{endNum}
 		
 	</select>
 	

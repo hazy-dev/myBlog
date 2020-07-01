@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	$(document).ready(function() {
 
 		<%
@@ -104,7 +104,7 @@
 		
 	}
 	
-</script>
+</script> --%>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="/">나의 블로그</a>

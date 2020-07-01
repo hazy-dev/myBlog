@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.study.blog.util.CommandMap;
 import com.study.blog.util.CommonUtils;
+import com.study.blog.util.Pagination;
 import com.google.gson.Gson;
 import com.study.blog.model.Main;
-import com.study.blog.model.Menu;
 import com.study.blog.service.MainService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +35,15 @@ public class MainController {
 	public ModelAndView main() {
 			
 		return new ModelAndView("main");
+	}
+	
+	@RequestMapping(value = "/goBlog", method = RequestMethod.GET)
+	public ModelAndView goBlog() throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main/choice");
+		
+		return mav;
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -93,27 +102,27 @@ public class MainController {
 		return CommonUtils.directWrite(res, gson.toJson(map));
 	}
 	
-	@RequestMapping(value = "/main_create_menu", method = RequestMethod.POST)
-	public ModelAndView create_menu( HttpServletRequest req , HttpServletResponse res, CommandMap commandMap, HttpSession session) throws Exception {
-		res.setCharacterEncoding("UTF-8");
-		
-		System.out.println("auth : " + req.getParameter("auth") );
-		
-		if( "-1".equals(req.getParameter("auth"))  ) {
-			commandMap.getMap().put("guest", "guest");
-		}else {
-			commandMap.getMap().put("guest", "admin");
-			commandMap.getMap().put("auth", req.getParameter("auth") );
-			commandMap.getMap().put("auth_group", req.getParameter("auth_group") );
-		}
-		
-		List<Menu> menu_list = mainService.create_menu(commandMap.getMap());
-		
-		
-		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("menu", menu_list);
-		return CommonUtils.directWrite(res, gson.toJson(map));
-	}
+	/*
+	 * @RequestMapping(value = "/main_create_menu", method = RequestMethod.POST)
+	 * public ModelAndView create_menu( HttpServletRequest req , HttpServletResponse
+	 * res, CommandMap commandMap, HttpSession session) throws Exception {
+	 * res.setCharacterEncoding("UTF-8");
+	 * 
+	 * System.out.println("auth : " + req.getParameter("auth") );
+	 * 
+	 * if( "-1".equals(req.getParameter("auth")) ) {
+	 * commandMap.getMap().put("guest", "guest"); }else {
+	 * commandMap.getMap().put("guest", "admin"); commandMap.getMap().put("auth",
+	 * req.getParameter("auth") ); commandMap.getMap().put("auth_group",
+	 * req.getParameter("auth_group") ); }
+	 * 
+	 * List<Menu> menu_list = mainService.create_menu(commandMap.getMap());
+	 * 
+	 * 
+	 * LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+	 * map.put("menu", menu_list); return CommonUtils.directWrite(res,
+	 * gson.toJson(map)); }
+	 */
 	
 	@RequestMapping(value = "/main_logout", method = RequestMethod.POST)
 	public ModelAndView logout( HttpServletRequest req , HttpServletResponse res, CommandMap commandMap, HttpSession session) throws Exception {
@@ -143,19 +152,34 @@ public class MainController {
 	
 	//main_board_list
 	@RequestMapping(value = "/main_board_list", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView main_board_list( HttpServletRequest req , HttpServletResponse res, CommandMap commandMap, HttpSession session) throws Exception {
-		res.setCharacterEncoding("UTF-8");
+	public ModelAndView main_board_list( HttpServletRequest req , CommandMap commandMap, Model model) throws Exception {
 		
-		String nextDate = req.getParameter("date");
-		commandMap.getMap().put("Cdate", nextDate);
-		commandMap.getMap().put("name", session.getAttribute("name"));
-		commandMap.getMap().put("auth", session.getAttribute("auth"));
+		int page_Num = req.getParameter("pageNum") == null ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+		String searchDate = req.getParameter("searchDate");
+		String searchType = req.getParameter("searchType");
+		String searchText = req.getParameter("searchText");
+		
+		commandMap.getMap().put("searchDate", searchDate);
+		commandMap.getMap().put("searchType", searchType);
+		commandMap.getMap().put("searchText", searchText);
+		
+		// 리스트 갯수
+		int total_cnt = mainService.board_cnt(commandMap.getMap());
+		int pageSize = 5;
+		
+		Pagination pagination = new Pagination(pageSize, total_cnt, page_Num);
+		
+		commandMap.getMap().put("startNum", pagination.getStartIndex()-1);
+		commandMap.getMap().put("endNum", pagination.getPageSize());
 		
 		List<Main> board_list = mainService.board_list( commandMap.getMap() );
 		
-		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("list", board_list);
-		return CommonUtils.directWrite(res, gson.toJson(map));
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main/board");
+		mav.addObject("list", board_list);
+		mav.addObject("pagination", pagination.getPagination());
+		
+		return mav;
 	}
 	
 	@RequestMapping(value = "/main_add_counter", method = { RequestMethod.POST, RequestMethod.GET })
@@ -173,5 +197,17 @@ public class MainController {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("data", counter);
 		return CommonUtils.directWrite(res, gson.toJson(map));
+	}
+	
+	
+	@RequestMapping(value = "/portfolio_detail", method = {  RequestMethod.GET, RequestMethod.POST } )
+	public ModelAndView portfolio_detail( HttpServletRequest req , HttpServletResponse res, CommandMap commandMap ) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("item", req.getParameter("item"));
+		mav.setViewName("portfolio/portfolio_detail");
+		
+		return mav;
 	}
 }

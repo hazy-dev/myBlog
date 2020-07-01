@@ -21,13 +21,13 @@
     <link href="../../css/coustom.css" rel="stylesheet">
     
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" >
-
+	
   </head>
-  
 	 <!-- Bootstrap core JavaScript -->
     <script src="../../vendor/jquery/jquery.min.js"></script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  	<script type="text/javascript" src="../../js/jquery.form.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom scripts for this template -->
@@ -35,4 +35,10 @@
     <!-- 아이피 확인 스크립트 -->
     <script type="text/javascript" src="http://jsgetip.appspot.com"></script>
     <!-- <script src="https://sdk.accountkit.com/en_US/sdk.js"></script> -->
+    
+
+    
+    
+    
+    
     

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.study.blog.mapper.MainMapper;
 import com.study.blog.model.Main;
-import com.study.blog.model.Menu;
 
 @Service
 public class MainService {
@@ -18,10 +17,6 @@ public class MainService {
 
 	public List<Main> selectAdminLogin(Map<String, Object> map) {
 		return mainMapper.selectAdminLogin(map);
-	}
-
-	public List<Menu> create_menu(Map<String, Object> map) {
-		return mainMapper.create_menu(map);
 	}
 
 	public List<Main> calendar_date(Map<String, Object> map) {
@@ -42,6 +37,10 @@ public class MainService {
 
 	public List<Main> user_list() {
 		return mainMapper.user_list();
+	}
+
+	public int board_cnt(Map<String, Object> map) {
+		return mainMapper.board_cnt(map);
 	}
 	
 }

@@ -7,8 +7,22 @@
 <body>
 
    <!-- Navigation -->
-   <jsp:include page="../include/navigation.jsp" flush="flase" />	
-
+   <%-- <jsp:include page="../include/navigation.jsp" flush="flase" />	 --%>
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="/">나의 블로그</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto" style="float:right;">
+            <li class="nav-item">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
    <!-- Page Header -->
    <header class="masthead" style="background-image: url('images/about-bg.jpg')">
      <div class="overlay"></div>
@@ -16,7 +30,7 @@
        <div class="row">
          <div class="col-lg-8 col-md-10 mx-auto">
            <div class="page-heading">
-             <h1>MAIN</h1>
+             <h1></h1>
              <!-- <span class="subheading">wellcom.</span> -->
            </div>
          </div>
@@ -45,13 +59,35 @@
 	       	</div>
 	       	<div class="main_center_width">
 	       		<div class="main_center_width_inner" id="main_board_list">
-	       		
+	       		 	<div style="padding-bottom:20px;">
+	       		 		<!-- 카테고리 -->
+	       		 		<button class="btn btn-default" type="button" onclick="changeList('total')" >전체</button>
+						<button class="btn btn-default" type="button" onclick="changeList('pofol')" >포트폴리오</button>
+						<button class="btn btn-default" type="button" onclick="changeList('post')" >포스트</button>
+						<button class="btn btn-default" type="button" onclick="changeList('')" >미정</button>
+						
+						
+						<button type="submit" class="btn btn-primary" onclick="search()" style="float:right;">Search</button>
+						<input type="text" class="form-control" placeholder="search text" id="searchInput"
+						style=" float: right; width: 200px; margin-right: 10px; ">
+	       		 	</div>
+	       		 	<div id="boardContents">
+	       		 		<!-- 내용 -->
+	       		 		
+	       		 	</div>
+	       		 	
 	       		</div>
 	       	</div>
-	       	<div class="main_side_width">
+	       	<form id="mainForm" >
+	       		<input type="hidden" name="searchType" id="searchType" value="" />
+	       		<input type="hidden" name="searchDate" id="searchDate" value="" />
+	       		<input type="hidden" name="searchText" id="searchText" value="" />
+	       		<input type="hidden" name="pageNum" id="pageNum" value="1" />
+	       	</form>
+	       	<!-- <div class="main_side_width">
 	       		<canvas id="canvas" width="285" height="285" style="background-color:#333"></canvas>
 	       		<div id="textTime" class="main_text_timer" ></div>
-	       	</div>
+	       	</div> -->
        	</div>
      </div>
    </div>
@@ -69,98 +105,12 @@
 		
 		var date = new Date().toISOString().slice(0,10);
 		startCalendar("calendar",date);
-		var callFunction = get_timer(); 
-		getList('');
+		//var callFunction = get_timer(); 
 		var Getip = ip();
 		counter(Getip);
+		ListChange();
 		
 	});
-	
-	var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext("2d");
-	var radius = canvas.height / 2;
-	ctx.translate(radius, radius);
-	radius = radius * 0.90
-	drawClock();
-
-	function drawClock() {
-	  drawFace(ctx, radius);
-	  drawNumbers(ctx, radius);
-	  drawTime(ctx, radius);
-	}
-	
-	var continu_time = function(){
-		drawFace(ctx, radius);
-		drawNumbers(ctx, radius);
-		drawTime(ctx, radius);
-	}
-	
-	setInterval(continu_time, 1000);
-
-	function drawFace(ctx, radius) {
-	  var grad;
-	  ctx.beginPath();
-	  ctx.arc(0, 0, radius, 0, 2*Math.PI);
-	  ctx.fillStyle = 'white';
-	  ctx.fill();
-	  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
-	  grad.addColorStop(0, '#333');
-	  grad.addColorStop(0.5, 'white');
-	  grad.addColorStop(1, '#333');
-	  ctx.strokeStyle = grad;
-	  ctx.lineWidth = radius*0.1;
-	  ctx.stroke();
-	  ctx.beginPath();
-	  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
-	  ctx.fillStyle = '#333';
-	  ctx.fill();
-	}
-
-	function drawNumbers(ctx, radius) {
-	  var ang;
-	  var num;
-	  ctx.font = radius*0.15 + "px arial";
-	  ctx.textBaseline="middle";
-	  ctx.textAlign="center";
-	  for(num = 1; num < 13; num++){
-	    ang = num * Math.PI / 6;
-	    ctx.rotate(ang);
-	    ctx.translate(0, -radius*0.85);
-	    ctx.rotate(-ang);
-	    ctx.fillText(num.toString(), 0, 0);
-	    ctx.rotate(ang);
-	    ctx.translate(0, radius*0.85);
-	    ctx.rotate(-ang);
-	  }
-	}
-	
-	function drawTime(ctx, radius){
-	  var now = new Date();
-	  var hour = now.getHours();
-	  var minute = now.getMinutes();
-	  var second = now.getSeconds();
-	  //hour
-	  hour = hour%12;
-	  hour = (hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60));
-	  drawHand(ctx, hour, radius*0.5, radius*0.07);
-	  //minute
-	  minute = (minute*Math.PI/30)+(second*Math.PI/(30*60));
-	  drawHand(ctx, minute, radius*0.8, radius*0.07);
-	  //second
-	  second = (second*Math.PI/30);
-	  drawHand(ctx, second, radius*0.9, radius*0.02);
-	}
-
-	function drawHand(ctx, pos, length, width) {
-	  ctx.beginPath();
-	  ctx.lineWidth = width;
-	  ctx.lineCap = "round";
-	  ctx.moveTo(0,0);
-	  ctx.rotate(pos);
-	  ctx.lineTo(0, -length);
-	  ctx.stroke();
-	  ctx.rotate(-pos);
-	}
 	
 	function startCalendar(id,Cdate){
 		
@@ -187,7 +137,7 @@
 	
 	function kCalendar(id, date, result) {
 		var kCalendar = document.getElementById(id);
-		console.log(date);
+
 		if( typeof( date ) !== 'undefined' ) {
 			date = date.split('-');
 			date[1] = date[1] - 1;
@@ -295,76 +245,64 @@
 
 	}
 	
-	function timer(){ 
-
-		 var date = new Date(); 
-
-		 // 그 지역의 날짜 (locale date). 
-		 var dateString = date .toLocaleDateString(); 
-
-		 // 그 지역의 시간 (locale time). 
-		 var timeString = date .toLocaleTimeString(); 
-
-		 var text = dateString + "<br />" + timeString; 
-
-		 // 'text'만 저장하고, 이 함수 끝내기. 
-		 return text; 
-	} 
-
-
-	function get_timer(){ 
-
-		 // 함수값 불러와서, 태그 안에 집어넣기. 
-		 document.getElementById( "textTime" ).innerHTML = timer(); 
-
-		 // 1000 밀리초(=1초) 후에, 이 함수를 실행하기 (반복 실행 효과). 
-		 setTimeout( "get_timer()", 1000 ); 
+	function fn_paging(num){
+		
+		$('#pageNum').val(num);
+		
+		ListChange();
+	}
+	
+	
+	function ListChange(){
+		$('#mainForm').ajaxForm({
+			cache:false,
+			dataType : 'html',
+			url: '/main_board_list',
+			success : function(data){
+				
+				console.log(data);
+				
+				$('#boardContents').html(data);
+			}
+		 });
+		 $('#mainForm').submit();
+	}
+	
+	function changeList(type){
+		
+		if( type == 'total' ){
+			$('#searchType').val('');	
+			$('#searchText').val('');
+			$('#searchDate').val('');
+		}else{
+			
+			if( type == 'pofol' ){
+				$('#searchType').val('1');	
+			}else if( type == 'post' ){
+				$('#searchType').val('2');	
+			}else{
+				$('#searchType').val('');
+			}
+		}
+		
+		ListChange();
+	}
+	
+	function search(){
+		
+		var searchText = $('#searchInput').val();
+		$('#searchText').val(searchText);
+		$('#searchInput').val('');
+		ListChange();
+		
 	}
 	
 	function getList( Cdate ){
-		$.ajax({
-			type: 'post',
-			url: '/main_board_list?date=' + Cdate,
-			contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-			dataType: "json",
-			success: function(result){
-
-				console.log(result);
-				
-				var table_html = "";
-				var board = document.getElementById("main_board_list");
-				
-				for( var i= 0 ; i<result.list.length; i++ ){
-					if( result.list[i].category == 1 ){
-						table_html += '<div class="main_list_div"><a onclick="portfolio_detail(' + "'"+ result.list[i].filename +"'" + ')"><h4 class="main_list_title">' + result.list[i].subject + '</h4>';
-					}else{
-						table_html += '<div class="main_list_div"><a onclick="post_detail(' + "'"+ result.list[i].filename +"'" + ')"><h4 class="main_list_title">' + result.list[i].subject + '</h4>';
-					}
-					
-					table_html += '<h4 class="main_list_memo">' + result.list[i].memo +  '</h4></a>';
-					table_html += '<p class="main_list_date">' + result.list[i].uploadDate + '</p></div><hr>';
-				}
-				
-				if( result.list.length == 0 ){
-					table_html += '<div class="main_list_div"><a><h3 class="main_list_title">포스트가 준비되지 않았습니다.</h3>';
-					table_html += '<h3 class="main_list_memo">준바되면 업로드 하겠습니다.</h3></a>';
-					table_html += '<p class="main_list_date">1999.99.99</p></div><hr>';
-				}
-				
-				board.innerHTML = table_html;
-				
-			},
-			error: function(request,status,error){
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-		});		
+		$('#searchDate').val(Cdate);
+		ListChange();
 	}	
 	
-	function post_detail(item){
-		location.href="/post_detail?item=" + item;
-	}
-	
-	function portfolio_detail(item){
+	function board_detail(item){
 		location.href="/portfolio_detail?item=" + item;
 	}
 	
