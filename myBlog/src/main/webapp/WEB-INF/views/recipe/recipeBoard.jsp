@@ -347,7 +347,8 @@
 					<div class="posts">
 						<h2>공지사항</h2>
 						<ul>
-							
+							<li><a href="#">공지사항1..</a></li>
+							<li><a href="#">공지사항2..</a></li>
 						</ul>
 					</div>
 						
