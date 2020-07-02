@@ -31,7 +31,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1> Choice </h1>
+              <h1>  </h1>
               <span class="subheading"> <!-- login? guest? --> </span>
             </div>
           </div>
@@ -40,7 +40,7 @@
     </header>
 
 	<!-- Main Content -->
-	<div class="container" style="height : 600px;">
+	<div class="container" style="height : 300px;">
       <div class="row" style="height : 100%;" >
         <div class="admin_loginform">
 			<div class="admin_h3div">
@@ -63,9 +63,9 @@
 					  <div class="admin_btn">
 					    <button type="button" onclick="blog_login()" class="btn btn-default">Sign in</button>
 					  </div>
-					  <div class="admin_btn">
+					  <!-- <div class="admin_btn">
 					    <button type="button" onclick="guest()" class="btn btn-default">Guest</button>
-					  </div>
+					  </div> -->
 				   </div>
 				</div>
 			</form>

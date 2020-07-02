@@ -20,4 +20,22 @@ public class RecipeController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/goBoard", method = RequestMethod.GET)
+	public ModelAndView goBoard() throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("recipe/recipeBoard");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/goDetail", method = RequestMethod.GET)
+	public ModelAndView goDetail() throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("recipe/recipeDetail");
+		
+		return mav;
+	}
+	
 }
