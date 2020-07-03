@@ -15,7 +15,7 @@ public class RecipeAdminController {
 	public ModelAndView goBlog() throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("recipe/recipeAdmin");
+		mav.setViewName("recipeAdmin/recipeAdmin");
 		
 		return mav;
 	}

@@ -38,4 +38,13 @@ public class RecipeController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public ModelAndView goInsert() throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("recipe/recipeInsert");
+		
+		return mav;
+	}
+	
 }

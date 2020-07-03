@@ -26,10 +26,10 @@
 	<!-- header -->
 	<jsp:include page="../recipe_common/header.jsp" flush="flase" />	
 	<hr>
-	<section class="container">
+	<section class="container headerMargin">
 		<article id="content">
 			<!-- coverSlider -->
-			<jsp:include page="../recipe_common/coverSlider.jsp" flush="flase" />
+			<%-- <jsp:include page="../recipe_common/coverSlider.jsp" flush="flase" /> --%>
 		
 			<div class="cover-thumbnail-list-2">
 				<h2>상세보기</h2>

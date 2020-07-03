@@ -3,7 +3,7 @@
 <header id="header">
 	<div class="inner">
 		<h1>
-			<a href="/goRecipe">
+			<a href="/recipe">
 				Beverages
 			</a>
 		</h1>

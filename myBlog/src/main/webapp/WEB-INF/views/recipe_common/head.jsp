@@ -95,6 +95,10 @@
 		cursor:pointer;
 		text-indent:-1000em;
 	}
+	
+	.headerMargin{
+		margin-top : 80px;
+	}
 </style>
 <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/1b34c740563adb6d06695c0ad6795b9e552120f8/blogs/plugins/TistoryProfileLayer/style.css?_version_=1b34c740563adb6d06695c0ad6795b9e552120f8">
 <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/1b34c740563adb6d06695c0ad6795b9e552120f8/blogs/plugins/TistoryProfileLayer/profile.js?_version_=1b34c740563adb6d06695c0ad6795b9e552120f8"></script>
