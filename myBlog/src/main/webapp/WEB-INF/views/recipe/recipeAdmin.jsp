@@ -23,37 +23,51 @@
 	<a href="#content">본문 바로가기</a>
 </div>
 <div id="wrap">
-	<!-- header -->
-	<jsp:include page="../recipe_common/header.jsp" flush="flase" />	
+	<header id="header">
+		<div class="inner">
+			<h1>
+				<a href="/">
+					Beverages
+				</a>
+			</h1>
+			<button type="button" class="mobile-menu"><span>메뉴</span></button>
+			<nav id="gnb">
+				<ul>
+					<li class="t_menu_home first">
+						<a href="/">홈</a>
+					</li>
+					<li class="t_menu_category">
+						<a href="#">리뷰</a>
+					</li>
+					<li class="t_menu_category">
+						<a href="#">랭킹</a>
+					</li>
+					<li class="t_menu_category">
+						<a href="#">기획·시리즈</a>
+					</li>
+					<li class="t_menu_category last">
+						<a href="#">관리자</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 	<hr>
 	<section class="container">
 		<article id="content">
-			<!-- coverSlider -->
-			<jsp:include page="../recipe_common/coverSlider.jsp" flush="flase" />
-		
 			<div class="cover-thumbnail-list-2">
-				<h2>상세보기</h2>
+				<h2>관리자 메뉴들</h2>
 			</div>
-			<div class="cover-wide-panel">
-				<div class="bg" style="background-image:url(https://t1.daumcdn.net/cfile/tistory/99BF20415BC4BB9D01);"></div>
-				<div class="box">
-					<span class="category">음식 카테고리 ( 양식, 중식, 일식, 한식... )</span>
-					<h2>요리 이름</h2>
-					<p>요리 간단 설명 및 재료 소개</p>
-					<a href="#" class="btn view">더보기</a>
-					<!-- 더보기를 누르면 상세 설명 추가 -->
-				</div>
-				<div>
-					네이버 스마트 에디터 내용 들어가는 부분!!
-				</div>
+
+			<div class="inner" style="text-align:center;">
+				관리자 메뉴 내용			
 			</div>
 		</article>
-		
 	</section>
 	<hr>
-	<footer id="footer">
+	<!-- <footer id="footer">
 		<p class="copyright">DESIGN BY <a href="#">TISTORY</a> <a href="#" class="admin">관리자</a></p>
-	</footer>
+	</footer> -->
 </div>
 <script src="https://tistory1.daumcdn.net/tistory/2948280/skin/images/script.js"></script>
 <script src="//search1.daumcdn.net/search/statics/common/js/g/search_dragselection.min.js"></script>
@@ -70,5 +84,8 @@
 </script>            
 </body>
 </html>
+
+
+
 
 

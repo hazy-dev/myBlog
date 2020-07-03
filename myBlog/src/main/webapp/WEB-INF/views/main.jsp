@@ -84,7 +84,7 @@
 
 	function goRecipe(){
 		
-		location.href = "/goRecipe";
+		location.href = "/recipe";
 		
 	}
 	

@@ -150,7 +150,6 @@ public class MainController {
 		return CommonUtils.directWrite(res, gson.toJson(map));
 	}
 	
-	//main_board_list
 	@RequestMapping(value = "/main_board_list", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView main_board_list( HttpServletRequest req , CommandMap commandMap, Model model) throws Exception {
 		

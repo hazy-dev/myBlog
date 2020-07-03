@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class RecipeController {
 	
-	@RequestMapping(value = "/goRecipe", method = RequestMethod.GET)
+	@RequestMapping(value = "/recipe", method = RequestMethod.GET)
 	public ModelAndView goBlog() throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
@@ -20,7 +20,7 @@ public class RecipeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/goBoard", method = RequestMethod.GET)
+	@RequestMapping(value = "/board", method = RequestMethod.GET)
 	public ModelAndView goBoard() throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
@@ -29,7 +29,7 @@ public class RecipeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/goDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public ModelAndView goDetail() throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
