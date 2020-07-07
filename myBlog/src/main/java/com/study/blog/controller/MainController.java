@@ -205,7 +205,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("item", req.getParameter("item"));
-		mav.setViewName("portfolio/portfolio_detail");
+		mav.setViewName("main/portfolio_detail");
 		
 		return mav;
 	}

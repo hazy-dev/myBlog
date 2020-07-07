@@ -16,34 +16,41 @@
  
 <!-- 내용 -->
 <div class="detail_div">
+
 	<div style="width : 100%;">
-		<div style="width : 25%; float : left;">
-			1) 개발 언어 및 환경 : 
+		<div style="width : 15%; float : left;">
+			1) 개발 환경 : 
 		</div>
-		<div style="width : 75%; float : left;">
-			< JDK 1.7 > , < Tomcat 7 > , < Linux > , < Oracla > , < java > , < jsp > 
-			< jquery >, < javascript > , < ajax > , < mybatis >
+		<div style="width : 85%; float : left;">
+			Linux, Tomcat7, jdk1.7
 		</div>	
 	</div>
 	<div style="width : 100%;">
 		<div style="width : 15%; float : left;">
-			2) 개발 툴 :
+			2) 개발 언어 :
 		</div>
 		<div style="width : 85%; float : left;">
-			< eclipse > , < SQLGate > , < svn >
+			JAVA, JAVASCRIPT, ORACLE , JSP 
 		</div>
 	</div>
-	 
 	<div style="width : 100%;">
 		<div style="width : 15%; float : left;">
-			3) API :
+			3) 개발 도구 :
 		</div>
 		<div style="width : 85%; float : left;">
-			< Google Chart > , < Naver Map >  
+			Eclipse, SQLGate
+		</div>
+	</div>
+	<div style="width : 100%;">
+		<div style="width : 15%; float : left;">
+			4) API :
+		</div>
+		<div style="width : 85%; float : left;">
+			Google Chart, Naver Map
 		</div>
 	</div>
 	<div>
-	4) VIAS 관제센터 구축 및 분석/통계 추출 모듈 개발<br />
+	5) VIAS 관제센터 구축 및 분석/통계 추출 모듈 개발<br />
 	- VIAS 운영 및 상태 모니터링 <br />
 	- BIC DATA 기반 분석/통계 추출 모듈 개발 <br />
 	- VIAS 관제 센터 구축 <br />

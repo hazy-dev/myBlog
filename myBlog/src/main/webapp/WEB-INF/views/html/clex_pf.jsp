@@ -16,25 +16,33 @@
  
 <!-- 내용 -->
 <div class="detail_div">
+
 	<div style="width : 100%;">
-		<div style="width : 25%; float : left;">
-			1) 개발 언어 및 환경 : 
+		<div style="width : 15%; float : left;">
+			1) 개발 환경 : 
 		</div>
-		<div style="width : 75%; float : left;">
-			< JDK 1.7 > , < Tomcat 7 > , < Linux > , < Mysql > , < java > , < jsp > 
-			< jquery >, < javascript > , < ajax > , < mybatis >
+		<div style="width : 85%; float : left;">
+			Linux, Tomcat7, jdk1.7
 		</div>	
 	</div>
 	<div style="width : 100%;">
 		<div style="width : 15%; float : left;">
-			2) 개발 툴 :
+			2) 개발 언어 :
 		</div>
 		<div style="width : 85%; float : left;">
-			< eclipse > , < HeidiSQL > , < svn >
+			JAVA, JAVASCRIPT, ORACLE , JSP 
+		</div>
+	</div>
+	<div style="width : 100%;">
+		<div style="width : 15%; float : left;">
+			3) 개발 도구 :
+		</div>
+		<div style="width : 85%; float : left;">
+			Eclipse, HeidiSQL
 		</div>
 	</div>
 	<div>
-	3) 사내에서 사용하기 위하여 개발하게 된 erp 시스템. 회사의 팀내에서 발생하는 업무나 타 팀에 요청하는 업무들을 테이터화 시켜 업무의 효율성을 높힘.
+	4) 사내에서 사용하기 위하여 개발하게 된 erp 시스템. 회사의 팀내에서 발생하는 업무나 타 팀에 요청하는 업무들을 테이터화 시켜 업무의 효율성을 높힘.
 	또한, 사내의 구비물품들을 데이터화하여 물품의 관리를 용이하게 함. 고객사와 외주사의 관리와 한 해의 실적을 확인할 수 있음.
 	</div>
 </div>
