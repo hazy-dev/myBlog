@@ -1,0 +1,17 @@
+-sts설치sts-4.7, (jre1.8)
+
+-window -show view - gradle tasks, gradle excutions, git staging 추가
+
+-sts -window - Perspective - git 추가
+-git 저장소 복사
+-----------------------------------------------
+자바로 돌아와서 import - projects from Git - 저장소 선택 - import as general project 선택 - working Tree에서 myBlog 디렉토리 선택 후 next, 완료
+
+-프로젝트 우클릭 - configure - add gradle nature (시간소요)
+-프로젝트 우클릭 - gradle - refresh gradle project(시간소요)
+-프로젝트 클린 및 리프레쉬 함 해주기
+-프로젝트 우클릭 -properties - resource - encoding 변경
+------------------------------
+MainController, Pagination 에러나는거 주석
+MyBlogApplication 우클릭 - run as - spring boot app
+해당 주소로 브라우저 열기 http://localhost:8080/
