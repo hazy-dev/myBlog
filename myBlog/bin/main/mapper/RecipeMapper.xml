@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.blog.mapper.RecipeMapper">
+	
+	<insert id="insert_recipe" parameterType="hashmap">
+	
+		INSERT INTO RECIPE
+		( INS_USER, REC_TYPE, REC_SUBJECT, REC_SURELY_INGREDIENT, REC_INGREDIENT, REC_ACCOUNT, REC_CONTENT, INS_DATE, REC_APPROVAL, REC_APPROVAL_DATE, REC_IMAGE )
+		VALUES
+		( #{insUser}, #{reSelect}, #{reSubject}, #{reNecessary}, #{reChoice}, #{reAccount}, #{reContent}, sysdate(), #{recApproval}, sysdate(), '' )
+	
+	</insert>
+	
+</mapper>

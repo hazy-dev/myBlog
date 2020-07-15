@@ -144,6 +144,28 @@
 .another_category_color_violet * { color:#9D64C5 !important; }
 .another_category_color_violet th a.current{border-color:#9D64C5 !important;}
 .another_category_color_violet h4, .another_category_color_violet h4 a { color: #7E2CB5 !important; }
+
+
+.insertDev{
+	margin-bottom : 15px;
+}
+
+.qna_ask {border-top: solid 2px #3a3a3a; border-bottom: solid 1px #3a3a3a;  }
+.qna_ask table tr{height:38px;}
+.qna_ask table th {border-bottom: solid 1px #fafafa; background:#eee; text-indent:20px; color:#000; font-weight:bold; font-size:14px; line-height:18px; text-align:left; letter-spacing:-0.05em; }
+.qna_ask table td {padding: 5px 0 5px 10px;border-bottom: solid 1px #e6e6e6;  color:#333333; font-size:14px; line-height:18px; text-align:left; }
+.qna_ask tr th.qna_line{border-top:2px solid #ccc; border-bottom:2px solid #ccc; }
+.qna_ask tr td.qna_line{border-top:2px solid #ccc; border-bottom:2px solid #ccc;}
+
+.btnBax{ margin-top: 25px; text-align: center; }
+.reBtn{ display: inline-block;  padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center;
+    white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer;
+    -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border: 1px solid transparent;
+    border-radius: 4px; }
+.reBtnCencle{ color: #fff; background-color: #d9534f; border-color: #d43f3a;  width: 120px;  } 
+.reBtnSucc{ color: #fff; background-color: #337ab7; border-color: #2e6da4;  width: 120px;  } 
+
+
 </style>
 <script type="text/javascript">
      
@@ -167,6 +189,7 @@
 <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/1b34c740563adb6d06695c0ad6795b9e552120f8/blogs/style/postBtn.css?_version_=1b34c740563adb6d06695c0ad6795b9e552120f8">
 <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/1b34c740563adb6d06695c0ad6795b9e552120f8/blogs/style/component/tistory.css?_version_=1b34c740563adb6d06695c0ad6795b9e552120f8">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.form.js"></script>
 <style type="text/css">
 #DragSchLayer{display:block;position:absolute;z-index:1000;width:61px;height:31px;margin:-30px 0px 0px -5px;background:url(//search1.daumcdn.net/search/statics/common/pi/btn_drag_rect.png);cursor:pointer} 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) { #DragSchLayer{background-image:url(//search1.daumcdn.net/search/statics/common/pi/r2/btn_drag_rect.png);background-size:61px 31px}}

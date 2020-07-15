@@ -33,7 +33,7 @@
 			<!-- coverSlider -->
 			<jsp:include page="../recipe_common/coverSlider.jsp" flush="flase" />
 			<div class="cover-thumbnail-list-1">
-				<h2>기획∙시리즈</h2>
+				<h2>최신 레시피</h2>
 				<ul>
 					<li>
 						<a href="/detail">

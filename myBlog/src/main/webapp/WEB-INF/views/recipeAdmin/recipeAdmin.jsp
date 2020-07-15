@@ -56,11 +56,13 @@
 	<section class="container">
 		<article id="content">
 			<div class="cover-thumbnail-list-2">
-				<h2>관리자 메뉴들</h2>
+				<h2><a style="text-decoration:none; cursor:pointer;" ><strong onclick="adminMenu('recipe');" >레시피</strong></a> |
+				 <a style="text-decoration:none; cursor:pointer;" ><strong onclick="adminMenu('appr');" >등록 승인</strong></a> |
+				  <a style="text-decoration:none; cursor:pointer;" ><strong onclick="adminMenu('main');" >메인 관리</strong></a></h2>
 			</div>
 
-			<div class="inner" style="text-align:center;">
-				관리자 메뉴 내용			
+			<div class="inner" id="adminContent">
+
 			</div>
 		</article>
 	</section>
@@ -81,6 +83,50 @@
 		"fitImagesInViewport":true ,
 		"stopEvent": false
     })
+    
+    
+    function adminMenu(type){
+    	
+    	/* $('#mainForm').ajaxForm({
+			cache:false,
+			dataType : 'html',
+			url: '/main_board_list',
+			success : function(data){
+				
+				console.log(data);
+				
+				$('#boardContents').html(data);
+			}
+		 });
+		 $('#mainForm').submit(); */
+		 
+		 var url = '';
+		 
+		 if( type == 'recipe' ){
+			 url = '/adminRecipe';				 
+		 }else if( type == 'appr' ){
+			 url = '/adminAppr';
+		 }else if( type == 'main' ){
+			 url = '/adminMainSet';
+		 }
+		 
+    	
+		 $.ajax({
+				type: 'post',
+				url: url,
+				contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+				dataType: "html",
+				success: function(data){
+					
+					$('#adminContent').html(data);
+					
+				},
+				error: function(request,status,error){
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+    	
+    }
 </script>            
 </body>
 </html>
